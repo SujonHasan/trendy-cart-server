@@ -12,4 +12,8 @@ module.exports =  {
             useUnifiedTopology: true
         }
     },
+    accessSecret: process.env.JWT_ACCESS_SECRET,
+    refreshSecret: process.env.JWT_REFRESH_SECRET,
+    accessExpirationMinutes: process.env.JWT_ACCESS_EXPIRATION_MINUTES,
+    refreshExpirationDays: process.env.JWT_REFRESH_EXPIRATION_DAYS
 }

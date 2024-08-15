@@ -12,16 +12,16 @@ const validate = (schema) => async (req, res, next) => {
     const {value, error} = Joi.compile(validSchema)
         .prefs({errors: {label: 'key'}})
         .validate(object, {abortEarly: false})    
-
+    
     if(error){
 
-        const message = error && error.details && error.details.length ? error.details[0].message : "Something went wrong";
+        const message = error && error.details && error.details.length ? error.details[0].message.replace(/"/g, '') : "Something went wrong";
 
         const err = {};
 
         await error.details.forEach((e) => {
-            err[e.path[1]] = e.message.toString();
-        });
+            err[e.path[1]] = e.message.toString().replace(/"/g, '');
+        });        
 
         return apiResponse(res, httpStatus.UNPROCESSABLE_ENTITY, { message }, err)
     }

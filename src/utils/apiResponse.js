@@ -3,7 +3,7 @@ const httpStatus = require('http-status')
 
 module.exports = (res, status, data = {}, optional = {}) => {
 
-    const returnObj =  {};
+    const returnObj =  {};    
 
     returnObj["data"] = data && data.data ? data.data : null;
     returnObj["message"] = data && data.message ? data.message : null;
