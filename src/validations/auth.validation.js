@@ -10,6 +10,14 @@ const register = validate({
     })
 })
 
+const login = validate({
+    body: Joi.object({
+        email: Joi.string().required(),
+        password: Joi.string().required(),
+    })
+})
+
 module.exports = {
-    registerValidation: register
+    registerValidation: register,
+    loginValidation: login
 }

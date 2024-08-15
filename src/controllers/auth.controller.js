@@ -51,11 +51,12 @@ const OAuthRefreshTokenDetails = async (user, accessTokenDetails, refreshToken, 
 
 const accessTokenDetailsAndRefreshTokenDetails = async (user) => {
 
-    const exp = moment().add(parseInt(config.accessExpirationMinutes ?? ""), 'minute');
+    const exp = moment().add(parseInt(config.accessExpirationMinutes ?? ""), 'minute');    
+    
     const accessToken = await generateToken(user, exp, config.accessSecret ?? "");
 
     const exp2 = moment().add(parseInt(config.refreshExpirationDays ?? ""), 'days');
-    const refreshToken = await generateToken(user, exp2, config.refreshSecret ?? "");
+    const refreshToken = await generateToken(user, exp2, config.refreshSecret ?? ""); 
 
     const accessTokenDetails = await OAuthAccessTokenDetails(user, accessToken, exp);
 
@@ -82,7 +83,7 @@ const register = catchAsync( async (req, res) => {
 
     if(Object.keys(validation).length === 0){
 
-        const user = await newUser.save(); 
+        const user = await newUser.save();
 
         const { accessTokenDetails, refreshTokenDetails} = await accessTokenDetailsAndRefreshTokenDetails(user)
 
@@ -107,6 +108,39 @@ const register = catchAsync( async (req, res) => {
 
 })
 
+const login = catchAsync(async (req, res ) => {
+
+    const {email, password} = req.body;
+
+    const user = await Usermodel.findOne({email});
+ 
+    if(!user){
+        return apiResponse(res, httpStatus.NOT_ACCEPTABLE, {message: 'Invalid email. Please register first...'});
+    }else if(! await user.isPasswordMatch(password)){
+        return apiResponse(res, httpStatus.NOT_ACCEPTABLE, {message: "Password not matched"})
+    }
+
+    const {accessTokenDetails, refreshTokenDetails} = await accessTokenDetailsAndRefreshTokenDetails(user);
+
+    return apiResponse(res, httpStatus.CREATED, {
+        data: {
+            access: {
+                token: accessTokenDetails.accessToken,
+                expires: accessTokenDetails.expires
+            },
+            refresh: {
+                token: refreshTokenDetails.refreshToken,
+                expires: refreshTokenDetails.expires
+            },
+            user,
+        },
+        message: "Login Successfull"
+    })
+
+
+})
+
 module.exports = {
-    register
+    register,
+    login
 }
