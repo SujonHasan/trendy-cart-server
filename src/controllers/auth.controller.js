@@ -140,7 +140,23 @@ const login = catchAsync(async (req, res ) => {
 
 })
 
+const logout = catchAsync(async(req, res) => {
+
+    const accessToken = req?.headers?.authorization?.split(' ')[1];    
+
+    if(accessToken){
+
+        const accessDetails = await OAuthAccessTokenModel.findOneAndUpdate({accessToken}, {revoked: true});
+        await OAuthRefreshTokenModel.findOneAndUpdate({accessToken: accessDetails.accessToken}, {revoked: true});
+
+        return apiResponse(res, httpStatus.ACCEPTED, {
+            message: "Logout Successful"
+        })
+    }
+})
+
 module.exports = {
     register,
-    login
+    login,
+    logout
 }
