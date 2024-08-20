@@ -14,9 +14,6 @@ const passportJwtInt = new Strategy(
 
         if(!user) done(true, false)
 
-        console.log("passport user == =  ", user );
-        
-
         return done(false, user, jwtPayload);
     })
 )
