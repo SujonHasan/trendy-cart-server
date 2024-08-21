@@ -8,6 +8,7 @@ const mongoose = require("mongoose");
 const config = require("../config/config");
 const jwt = require('jsonwebtoken');
 const moment = require('moment');
+const bcrypt = require("bcrypt");
 const { OAuthAccessTokenModel } = require("../models/oAuthAccessToken.model");
 const { OAuthRefreshTokenModel } = require("../models/oAuthRefreshToken.model");
 
@@ -155,8 +156,43 @@ const logout = catchAsync(async(req, res) => {
     }
 })
 
+const changePassword = catchAsync(async (req, res) => {
+
+    const {currentPassword, newPassword} = req.body;
+
+    const accessToken = req?.headers?.authorization?.split(' ')[1];
+
+    if(accessToken){
+
+        const accessTokenDetails = await OAuthAccessTokenModel.findOne({accessToken});        
+
+        if(accessTokenDetails?.user){
+
+            const user = await Usermodel.findOne({_id: accessTokenDetails?.user}, {password: true});
+            
+            const passMatch = await user.isPasswordMatch(currentPassword)
+
+            if(passMatch){
+
+                const pass = await bcrypt.hash(newPassword, 9);
+
+                await Usermodel.updateOne({_id: user?._id}, {$set: {password: pass}});
+
+                return apiResponse(res, httpStatus.ACCEPTED, {message: "Password Updated"});
+            }
+
+            return apiResponse(res, httpStatus.NOT_ACCEPTABLE, {message: "Current Password Not Match"})
+        }
+
+        return apiResponse(res, httpStatus.NOT_ACCEPTABLE, {message: "User not Found"})
+    }
+
+    return apiResponse(res, httpStatus.NOT_ACCEPTABLE, {message: "User not found"});
+})
+
 module.exports = {
     register,
     login,
-    logout
+    logout,
+    changePassword
 }
