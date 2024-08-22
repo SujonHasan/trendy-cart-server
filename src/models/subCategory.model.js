@@ -6,7 +6,7 @@ const categoryModel = new Schema({
     _id: {
         type: ObjectId,
         required: false,
-        ref: 'shop_category'
+        ref: 'category'
     },
     name: {
         type: String,
@@ -38,6 +38,6 @@ const schema.methods.toJSON = function (){
     return obj;
 }
 
-const SubCategoryModel = mongoose.model('shop_sub_category', schema);
+const SubCategoryModel = mongoose.model('sub_category', schema);
 
 module.exports = {SubCategoryModel};

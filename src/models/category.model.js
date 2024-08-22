@@ -19,6 +19,6 @@ schema.methods.toJSON = function(){
     return obj;
 }
 
-const CategoryModel = mongoose.model('shop_category', schema);
+const CategoryModel = mongoose.model('category', schema);
 
 module.exports = {CategoryModel}
