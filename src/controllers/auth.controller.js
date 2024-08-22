@@ -138,7 +138,6 @@ const login = catchAsync(async (req, res ) => {
         message: "Login Successfull"
     })
 
-
 })
 
 const logout = catchAsync(async(req, res) => {
