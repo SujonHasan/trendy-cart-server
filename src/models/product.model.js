@@ -192,3 +192,5 @@ schema.methods.toJSON = function () {
 }
 
 const ProductModel  = mongoose.model('product', schema);
+
+module.exports = ProductModel;
