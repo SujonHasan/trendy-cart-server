@@ -9,8 +9,8 @@ const updateSeedRunnable = value => {
     if(typeof value === "boolean") isSeedRunnable = true;
 
     if(isSeedRunnable){
-        console.log("hello");
         
+        require('./product.seed');
     }
 }
 
