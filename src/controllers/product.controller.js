@@ -35,6 +35,16 @@ const products = catchAsync(async (req, res) => {
     return apiResponse(res, httpStatus.OK, {data: response})
 })
 
+const product = catchAsync(async (req, res) => {
+    
+    const {_id} = req.params;
+
+    const product = await ProductModel.findOne({_id});    
+
+    return apiResponse(res, httpStatus.OK , {data: product});
+})
+
 module.exports = {
-    products
+    products,
+    product
 }
