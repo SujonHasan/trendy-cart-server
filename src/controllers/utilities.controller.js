@@ -14,7 +14,7 @@ const categories = catchAsync( async (req, res) => {
 const subCategories = catchAsync( async (req, res) => {
 
     const {categoryId} = req.params;
-    
+
     const condition ={};
 
     categoryId ?  Object.assign(condition, {"category._id": categoryId})  : null; 
@@ -24,7 +24,24 @@ const subCategories = catchAsync( async (req, res) => {
     return apiResponse(res, httpStatus.OK, {data: subCategories});
 })
 
+const categoryTree = catchAsync( async (req, res) => {
+
+    const categories = await CategoryModel.find({}, {name: true}).lean();
+
+    // console.log("categories === ", categories);
+
+    if(categories && categories.length){
+
+        for(let i = 0; i < categories.length; i++){
+            categories[i].subCategories = await SubCategoryModel.find({"category._id": categories[i]._id}, {name: true}).lean();
+        }
+    }
+    
+    return apiResponse(res, httpStatus.OK, {data: categories})
+} )
+
 module.exports = {
     categories,
-    subCategories
+    subCategories,
+    categoryTree
 }
