@@ -15,7 +15,7 @@ const categoryModel = new Schema({
     }
 }, {_id: false})
 
-const schema = ({
+const schema = new Schema ({
     name: {
         type: String,
         required: true
@@ -27,7 +27,7 @@ const schema = ({
 
 }, {timestamps: true})
 
-const schema.methods.toJSON = function (){
+schema.methods.toJSON = function (){
 
     let obj = this.toObject();
 
