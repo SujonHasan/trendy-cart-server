@@ -11,7 +11,8 @@ const updateSeedRunnable = value => {
     if(isSeedRunnable){
         
         // require('./product.seed');
-        require('./category.seed');
+        // require('./category.seed');
+        require('./subCategoy.seed');
 
     }
 }
