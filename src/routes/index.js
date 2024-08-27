@@ -5,6 +5,7 @@ const guestRouter = require("./guest.route");
 const httpStatus = require('http-status');
 const apiResponse = require('../utils/apiResponse');
 const ProductRouter = require("./product.route");
+const UtilitiesRouter = require("./utilities.route");
 
 
 
@@ -15,6 +16,8 @@ const initRoutes = (app)=> {
     app.use('/auth', authRouter);
 
     app.use('/', ProductRouter)
+
+    app.use('/', UtilitiesRouter)
 
     app.use((req, res, next) => {
         const error = new ApiError(httpStatus.NOT_FOUND);

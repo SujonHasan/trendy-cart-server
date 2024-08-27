@@ -6,6 +6,14 @@ const schema = new Schema({
     name: {
         type: String,
         required: true
+    },
+    photo: {
+        type: String,
+        required: false,
+    },
+    description: {
+        type: String,
+        required: false
     }
 }, {timestamps: true})
 
