@@ -18,7 +18,7 @@ const products = catchAsync(async (req, res) => {
     if(sort && sort === "priceDsc") productSort = {"price.regular": -1};
 
     const products = await ProductModel.find(filters)
-                                        .skip(perPage ? parseInt(perPage) : 10) * (parseInt(page) - 1)
+                                        // .skip(perPage ? parseInt(perPage) : 10) * (parseInt(page) - 1)
                                         // .limit(perPage ? parseInt(perPage) : 10)
                                         // .sort(productSort);
     
