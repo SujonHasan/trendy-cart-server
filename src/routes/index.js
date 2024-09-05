@@ -6,6 +6,7 @@ const httpStatus = require('http-status');
 const apiResponse = require('../utils/apiResponse');
 const ProductRouter = require("./product.route");
 const UtilitiesRouter = require("./utilities.route");
+const userRouter = require("./user.route");
 
 
 
@@ -14,6 +15,8 @@ const initRoutes = (app)=> {
     app.use("/", guestRouter);
 
     app.use('/auth', authRouter);
+
+    app.use('/user', userRouter)
 
     app.use('/', ProductRouter)
 
