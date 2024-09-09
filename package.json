@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "trendy-cart-server",
   "main": "src/index.js",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
     "build": "src/index.js build",
     "start": "node src/index.js",
