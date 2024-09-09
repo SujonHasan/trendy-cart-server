@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "description": "trendy-cart-server",
   "main": "src/index.js",
-  "engines": {
-    "node": ">=14.8.0"
-  },
   "scripts": {
+    "build": "src/index.js build",
     "start": "node src/index.js",
     "dev": "nodemon src/index.js",
     "db-seed": "node src/seeds/script.js"
