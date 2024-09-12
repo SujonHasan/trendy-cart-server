@@ -5,8 +5,9 @@ const httpStatus = require('http-status');
 
 const getUser = catchAsync( async (req, res) => {
     
-    const user = await Usermodel.findById({_id: req.user._id});
-        
+    const {_id} = req.params;
+
+    const user = await Usermodel.findById({_id});
     apiResponse(res, httpStatus.OK, {data: user});
 } )
 

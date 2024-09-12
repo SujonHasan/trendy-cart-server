@@ -4,6 +4,6 @@ const { isAuthenticated } = require('../middlewares/auth.middleware');
 
 const router = express.Router();
 
-router.get('/', isAuthenticated, getUser)
+router.get('/:_id', getUser)
 
 module.exports = router;
