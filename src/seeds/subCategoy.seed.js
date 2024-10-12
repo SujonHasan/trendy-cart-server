@@ -2,11 +2,21 @@ const { CategoryModel } = require("../models/category.model");
 const { SubCategoryModel } = require("../models/subCategory.model");
 
 const subCategoriesData = {
-    'Electronics': ['Mobile Phones', 'Laptops', 'Cameras'],
-    'Books': ['Fiction', 'Non-Fiction', 'Comics'],
-    'Clothing': ['Men\'s Clothing', 'Women\'s Clothing', 'Kids\' Clothing'],
-    'Home & Kitchen': ['Furniture', 'Appliances', 'Cookware'],
-    'Toys & Games': ['Board Games', 'Action Figures', 'Puzzles']
+    'Electronics': ["Mobile Phones", "Laptops", "Cameras"],
+    'Fashion': ["Men's Clothing", "Women's Clothing", "Accessories"],
+    'Home & Kitchen': ["Furniture", "Kitchen Appliances", "Decor"],
+    'Sports & Outdoors': ["Fitness Equipment", "Camping Gear", "Sportswear"],
+    'Books': ["Fiction", "Non-Fiction", "Children's Books"],
+    'Beauty & Personal Care': ["Skincare", "Haircare", "Makeup"],
+    'Automotive': ["Car Accessories", "Motorbike Accessories", "Tires"],
+    'Toys & Games': ["Board Games", "Action Figures", "Educational Toys"],
+    'Health & Wellness': ["Supplements", "Fitness Trackers", "Personal Care"],
+    'Computers & Accessories': ["Desktops", "Monitors", "Computer Accessories"],
+    'Office Supplies': ["Printers", "Stationery", "Office Furniture"],
+    'Baby Products': ["Diapers", "Baby Clothing", "Baby Toys"],
+    'Grocery': ["Fruits & Vegetables", "Snacks", "Beverages"],
+    'Pet Supplies': ["Pet Food", "Pet Toys", "Grooming"],
+    'Gaming': ["Consoles", "Video Games", "Gaming Accessories"]
 };
 
 setTimeout( async() => {
