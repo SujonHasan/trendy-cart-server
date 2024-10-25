@@ -26,7 +26,7 @@ const subCategories = catchAsync( async (req, res) => {
 
 const categoryTree = catchAsync( async (req, res) => {
 
-    const categories = await CategoryModel.find({}, {name: true}).lean();
+    const categories = await CategoryModel.find({}, {name: true, photo: true}).lean();
 
     // console.log("categories === ", categories);
 
