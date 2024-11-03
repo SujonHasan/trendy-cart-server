@@ -10,9 +10,9 @@ const updateSeedRunnable = value => {
 
     if(isSeedRunnable){
         
-        // require('./product.seed');
+        require('./product.seed');
         // require('./category.seed');
-        require('./subCategoy.seed');
+        // require('./subCategoy.seed');
 
     }
 }

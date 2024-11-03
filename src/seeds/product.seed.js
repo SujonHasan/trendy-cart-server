@@ -5,20 +5,23 @@ setTimeout( async() => {
 
     const productContent = {
 
-        title:  "test-Product-35",
-        productId: "abc1257",
+        title:  "Men's Casual Shirt",
+        productId: "abc126",
         description: {
-            long: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+            short: "100% cotton shirt available in various colors."
         },
         price: {
-            cost: 500,
-            regular: 600
+            cost: 1200,
+            regular: 1600
         },
-        categories: [{_id: "66cdec7a2abd59be5a7e130d", name: "Clothing"}],
-        subCategories: [{_id: "66cdf12b0f8d1edfc5296f99", name: "Men's Clothing"}],
-
+        size: "M, L, XL",
+        quantity: 100,
+        categories: [{_id: "671bde6567dfb084acb04c2d", name: "Fashion"}],
+        review: {
+            comment: "Comfortable and stylish for everyday wear."
+        },
+        gallery: [{file: "https://i.ibb.co.com/GkQn9X4/Men-s-Casual-Shirt.jpg"}]
     }
-
     const product = new ProductModel(productContent);
 
     await product.save();

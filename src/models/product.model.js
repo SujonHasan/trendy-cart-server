@@ -157,6 +157,14 @@ const schema = new Schema({
         required: false,
         default: () => ({})
     },
+    size: {
+        type: String,
+        required: false
+    },
+    quantity: {
+        type: Number,
+        required: false,
+    },
     review: {
         type: reviewSchema,
         required: false,
