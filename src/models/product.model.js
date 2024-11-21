@@ -120,7 +120,7 @@ const stockSchema = new Schema({
         required: false,
         default: false
     },
-    quantity: {
+    amount: {
         type: Number,
         required: false,
         default: 0
