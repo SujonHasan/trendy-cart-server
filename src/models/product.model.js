@@ -42,13 +42,13 @@ const descriptionSchema = new Schema({
     }
 }, {_id: false})
 
-const priceSchema = ({
-    cost: {
+const priceSchema = new Schema({
+    discountPrice: {
         type: Number,
         required: false,
         default: 0
     },
-    regular: {
+    mainPrice: {
         type: Number,
         required: false,
         default: 0
@@ -157,11 +157,11 @@ const schema = new Schema({
         required: false,
         default: () => ({})
     },
-    size: {
+    size: [{
         type: String,
         required: false
-    },
-    quantity: {
+    }],
+    stock: {
         type: Number,
         required: false,
     },
@@ -180,7 +180,7 @@ const schema = new Schema({
         required: false,
         default: []
     }],
-    stock: {
+    quantity: {
         type: stockSchema,
         required:  false,
         default: () => ({})

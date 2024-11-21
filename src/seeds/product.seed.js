@@ -5,23 +5,24 @@ setTimeout( async() => {
 
     const productContent = {
 
-        title:  "Men's Casual Shirt",
-        productId: "abc126",
+        title:  "Action Figure Toy",
+        productId: "abc123",
         description: {
-            short: "100% cotton shirt available in various colors."
+            short: "A durable action figure that encourages imaginative play."
         },
         price: {
-            cost: 1200,
-            regular: 1600
+            discountPrice: 750,
+            mainPrice: 1000
         },
-        size: "M, L, XL",
-        quantity: 100,
-        categories: [{_id: "671bde6567dfb084acb04c2d", name: "Fashion"}],
+        size: ["6 inches"],
+        stock: 50,
+        categories: [{_id: "671bde6567dfb084acb04c33", name: "Toys & Games"}],
         review: {
-            comment: "Comfortable and stylish for everyday wear."
+            comment: "Great toy for kids aged 5-10."
         },
-        gallery: [{file: "https://i.ibb.co.com/GkQn9X4/Men-s-Casual-Shirt.jpg"}]
+        gallery: [{file: "https://i.ibb.co.com/wdC04yw/Ultra-HD-Action-Camera.jpg"}]
     }
+
     const product = new ProductModel(productContent);
 
     await product.save();
